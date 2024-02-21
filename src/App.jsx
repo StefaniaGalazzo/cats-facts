@@ -6,6 +6,7 @@ import NavBarCustom from "./components/elements/NavBarCustom";
 import { useEffect, useState } from "react";
 import AnimatedBackground from "./components/elements/AnimatedBackground";
 import styled from "styled-components";
+import NotFound from "./components/pages/NotFound";
 
 const Index1 = styled.div`
   position: relative;
@@ -62,6 +63,7 @@ function App() {
             path="/cats-facts/detail/:id"
             element={<Details facts={facts} imagesArray={imagesArray} />}
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Index1>
       <AnimatedBackground />
