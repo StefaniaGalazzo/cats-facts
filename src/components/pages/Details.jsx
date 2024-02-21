@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSpring, animated } from "@react-spring/web";
 import { Link, useParams } from "react-router-dom";
 import meow from "../../assets/media/meow.mp3";
@@ -51,33 +51,40 @@ export default function Dettaglio({ facts, imagesArray }) {
   });
 
   return (
-    <Container className="mt-5 rounded p-3 py-5 glassmorph ">
-      {facts && facts[id] ? (
-        <Row className="justify-content-center align-items-end">
-          <Col xs={10} lg={4}>
-            <animated.div
-              onMouseEnter={handleMouseMove}
-              onMouseLeave={handleMouseLeave}
-              className="customBGdetail rounded-circle position-relative"
-              style={{
-                backgroundImage: `url(${imagesArray[id]})`,
-                transform: meowSpring.transform,
-              }}
-            >
-              <OverMe />
-            </animated.div>
-          </Col>
-          <Col xs={10} lg={4} className="mt-sm-5">
-            <h3>The fact:</h3>
-            <p>{facts[id].fact}</p>
-          </Col>
+    <>
+      <Container className="mt-5 rounded p-3 py-5 glassmorph ">
+        {facts && facts[id] ? (
+          <Row className="justify-content-center align-items-end">
+            <Col xs={10} lg={4}>
+              <animated.div
+                onMouseEnter={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className="customBGdetail rounded-circle position-relative"
+                style={{
+                  backgroundImage: `url(${imagesArray[id]})`,
+                  transform: meowSpring.transform,
+                }}
+              >
+                <OverMe />
+              </animated.div>
+            </Col>
+            <Col xs={10} lg={4} className="mt-sm-5">
+              <h3>The fact:</h3>
+              <p>{facts[id].fact}</p>
+            </Col>
+          </Row>
+        ) : (
+          <span>
+            There are no Cats Facts here!
+            <Link to={"/cat-fatcs"}> Back home.</Link>
+          </span>
+        )}
+        <Row className="mt-5">
+          <Button style={{ margin: "0 auto", width: "fit-content" }}>
+            <Link to={"/cats-facts"}>Back</Link>
+          </Button>
         </Row>
-      ) : (
-        <span>
-          There are no Cats Facts here!
-          <Link to={"/cat-fatcs"}> Back home.</Link>
-        </span>
-      )}
-    </Container>
+      </Container>
+    </>
   );
 }
